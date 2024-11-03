@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>admin</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <%- include('Layout/admin-sidebar' ) %>
+        <!-- total students -->
+        <% let totalStudents = 0; %>
+        <%= resInfo.length%>
+        <% for (let i = 0; i < resInfo.length; i++) { %>
+        <% const blocks = resInfo[i].blocks; %>
+        <% for (let j = 0; j < blocks.length; j++) { %>
+        <% const rooms = blocks[j].rooms; %>
+        <% for (let k = 0; k < rooms.length; k++) { %>
+        <% totalStudents += rooms[k].students.length; %>
+        <% } %>
+        <% } %>
+        <% } %>
+
+        <!-- available space -->
+        <% let space = resInfo[0].availableSpace - totalStudents %>
+
+        <div class="holder">
+            <div class="adminContainer">
+                <div class="adminInfo1"></div>
+                <div class="adminInfo2">
+                    <span>Hall Information</span>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Registered Students</th>
+                                <th>Available Space</th>
+                                <th>Active Students </th>
+                                <th>Inactive Students</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsExBody">
+                            <td>1</td>
+                            <td><%= totalStudents %></td>
+                            <td><%= space %></td>
+                            <td></td>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+</html>

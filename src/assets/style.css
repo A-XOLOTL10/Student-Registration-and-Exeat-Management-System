@@ -1,0 +1,1354 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap');
+
+:root {
+    --light: #f6f6f9;
+    --primary: #0f0f0f;
+    --light-primary: #3e4042;
+    --grey: #eee;
+    --dark-grey: #AAAAAA;
+    --dark: #363949;
+    --danger: #D32F2F;
+    --light-danger: #FECDD3;
+    --warning: #FBC02D;
+    --light-warning: #FFF2C6;
+    --success: #388E3C;
+    --light-success: #BBF7D0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.fas {
+    font-size: 1.7rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+body {
+    background-color: var(--grey);
+}
+
+.none {
+    display: none;
+}
+
+.sidebar {
+    position: fixed;
+    z-index: 2000;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--light);
+    color: var(--light);
+    width: 250px;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    transition: all 0.3s ease;
+
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.sidebar .logo {
+    width: 100%;
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--primary);
+    font-size: 40px;
+    font-weight: 800;
+
+}
+
+
+.sidebar .side-menu {
+    width: 100%;
+    margin-top: 70px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+.sidebar .side-menu li {
+    height: 45px;
+    background: transparent;
+    margin-left: 10px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    padding: 5px;
+
+}
+
+.sidebar .side-menu li.active {
+    background-color: var(--primary);
+    color: var(--light);
+    position: relative;
+}
+
+.sidebar .side-menu li.active:hover {
+    background: var(--primary);
+}
+
+.sidebar .side-menu li a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    font-size: 16px;
+    color: var(--primary);
+    white-space: nowrap;
+    overflow-x: hidden;
+    transition: all 0.3s ease;
+}
+
+.sidebar .side-menu li:hover {
+    transition: all 0.3s ease;
+    background-color: var(--grey);
+}
+
+.sidebar.close .side-menu li a {
+    width: calc(48px - (4px * 2));
+    transition: all 0.3s ease;
+}
+
+.sidebar .side-menu li a .fas {
+    min-width: calc(60px - ((4px + 6px) * 2));
+
+    display: flex;
+    font-size: 1.6rem;
+    justify-content: center;
+}
+
+.sidebar .side-menu li.active a {
+    color: var(--light);
+}
+
+.sidebar .side-menu li a.logout {
+    color: var(--danger) !important;
+    background: none !important;
+}
+
+.sidebar.close~.content {
+    width: calc(100% - 60px);
+    left: 60px;
+}
+
+/* nav bar */
+.content nav {
+    height: 56px;
+    background: var(--light);
+    padding: 0 24px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    position: fixed;
+    margin-right: 70px;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    border-bottom: 2px solid var(--primary);
+
+}
+
+.content nav a {
+    color: var(--primary);
+}
+
+.content nav.fas .fa-bars {
+    cursor: pointer;
+}
+
+.content nav form {
+    max-width: 400px;
+    width: 100%;
+    margin-right: auto;
+}
+
+.content nav form .form-input {
+    display: flex;
+    align-items: center;
+    height: 36px;
+}
+
+.content nav form .form-input input {
+    flex-grow: 1;
+    padding: 0 16px;
+    height: 100%;
+    border: none;
+    background: var(--grey);
+    border-radius: 36 0 0 36px;
+    outline: none;
+    width: 100%;
+    color: var(--dark);
+
+}
+
+.content nav form .form-input button {
+    width: 60px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary);
+    color: var(--light);
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 0 36px 36px 0;
+    cursor: pointer;
+
+
+}
+
+.content nav .notify {
+    font-size: 20px;
+    position: relative;
+}
+
+.content nav .notify .count {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 20px;
+    height: 20px;
+    background: var(--danger);
+    border-radius: 50px;
+    color: var(--light);
+    border: 2px solid var(--light);
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content nav .profile img {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: 50%;
+
+}
+
+
+.content {
+    width: calc(100% - 250px);
+    float: right;
+
+}
+
+.content nav form.show.notify,
+.content nav form.show~.profile {
+    display: none;
+}
+
+/* registration */
+
+.holder {
+    height: 100vh;
+    float: right;
+    padding-top: 50px;
+    width: calc(100% - 250px);
+
+}
+
+/* student dashboard */
+.holder .contain {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.holder .contain h2 {
+    font-weight: 200;
+    font-size: 25px;
+
+    color: var(--dark-grey);
+}
+
+.dashSection1 {
+    background-color: var(--light);
+    padding: 10px;
+    display: flex;
+    height: 50%;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+
+}
+
+.dashSection1 .ds1 {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashSection1 .ds1 span {
+    font-weight: 300;
+    font-size: 50px;
+}
+
+.dashSection1 .ds1 b {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.dashSection1 .dsimage {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashSection1 .dsimage img {
+    height: 100%;
+    width: 50%;
+}
+
+.dashSection2 {
+    background-color: var(--light);
+    padding: 10px;
+    display: flex;
+    height: 50%;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+
+}
+
+.dashSection2 b {
+    width: 100%;
+
+}
+
+.regForm {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    transition: all 0.3 ease;
+    padding: 20px 20px 0 30px;
+}
+
+.regForm label {
+    font-size: 1.5rem;
+    color: var(--light);
+}
+
+
+.regForm .resType {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--primary);
+    width: fit-content;
+
+}
+
+.regForm .resType span {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 50px;
+}
+
+.regForm .resType .resButton {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+
+}
+
+.regForm .resType .resButton button {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    font-weight: 500;
+    border: 1px solid var(--primary);
+    background-color: var(--light);
+    border-radius: 5px;
+    width: fit-content;
+    height: 30px;
+    padding: 3px 5px 0 5px;
+}
+
+.regForm .resType .resButton button.active {
+    background: var(--light-success);
+    transition: all 1s ease;
+}
+
+
+
+.regForm .table-info {
+    height: auto;
+    padding: 10px;
+    border: 1px solid var(--primary);
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+    background-color: var(--light);
+
+}
+
+.regForm .table-info table {
+    background-color: var(--light);
+    border-collapse: collapse;
+    padding: 10px;
+    width: 100%;
+
+
+}
+
+
+.regForm .table-info table thead tr th {
+    width: auto;
+    font-weight: 600;
+    color: var(--primary);
+    padding: 10px;
+    align-items: center;
+
+}
+
+.table-info table tbody tr:nth-child(even) {
+    background-color: var(--grey);
+}
+
+.table-info table tbody tr:nth-child(odd) {
+    background-color: var(--light);
+
+}
+
+.table-info table tbody tr td {
+    padding: 10px;
+    text-align: center;
+}
+
+.table-info table tbody tr td .resSelect {
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--primary)
+}
+
+input:checked {
+    color: var(--success);
+}
+
+
+
+/* room no and select */
+.regForm .resType2 {
+
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.hostel {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+
+    padding: 20px 20px 0 30px;
+    color: var(--light);
+
+}
+
+
+
+.hostel .roomNum label {
+    color: var(--primary);
+    font-size: 20px;
+    font-weight: 500;
+    padding: 10px;
+}
+
+.hostel .roomNum .num {
+    border-radius: 5px;
+    border: 2px solid var(--primary);
+    text-align: center;
+    padding: 5px;
+    font-size: 15px;
+    font-weight: 600;
+
+
+}
+
+.hostel .submitReg {}
+
+.hostel .submitReg button {
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--danger);
+    font-size: 20px;
+    color: var(--light);
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    border: none;
+
+}
+
+/* block Bootstrap Css   */
+.hostel .list-choice {
+    padding-right: 10px;
+    display: flex;
+    gap: 10px;
+
+}
+
+.hostel .list-choice label {
+    border: 2px solid var(--primary);
+    padding: 5px;
+    font-size: 15px;
+    color: var(--primary);
+    border-radius: 10px;
+
+}
+
+.hostel .list-choice label input[type="radio"]:checked {
+    transition: all 0.3s ease;
+    background-color: var(--success);
+}
+
+.hostel button {
+    padding: 5px 20px 5px 20px;
+    background-color: var(--primary);
+    border-radius: 15px;
+    border: 2px solid var(--success);
+    color: var(--light);
+}
+
+/* radio block selection css */
+
+.regForm .roomAvailable {
+    background-color: #0f0f0f;
+}
+
+.middle {
+    width: 100%;
+    text-align: center;
+
+    h1 {
+        /* font-family: $font; */
+        color: var(--light);
+    }
+
+    input[type="radio"] {
+        display: none;
+
+        &:checked {
+            +.box {
+                background-color: var(--success);
+
+                span {
+                    color: white;
+                    transform: translateY(70px);
+
+                    &:before {
+                        transform: translateY(0px);
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+
+    .box {
+        width: 200px;
+        height: 200px;
+        background-color: var(--light);
+        transition: all 250ms ease;
+        will-change: transition;
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+        position: relative;
+        /* font-family: $font; */
+        font-weight: 900;
+
+        &:active {
+            transform: translateY(10px);
+        }
+
+        span {
+            position: absolute;
+            transform: translate(0, 60px);
+            left: 0;
+            right: 0;
+            transition: all 300ms ease;
+            font-size: 1.5em;
+            user-select: none;
+            color: var(--success);
+
+            &:before {
+                font-size: 1.2em;
+                font-family: FontAwesome;
+                display: block;
+                transform: translateY(-80px);
+                opacity: 0;
+                transition: all 300ms ease-in-out;
+                font-weight: normal;
+                color: white;
+            }
+        }
+    }
+
+    .front-end {
+        span {
+            &:before {
+                content: "\f121";
+            }
+        }
+    }
+
+    .back-end {
+        span {
+            &:before {
+                content: "\f0f4";
+            }
+        }
+    }
+
+}
+
+
+
+
+/* end of css block */
+
+/* Exeat css */
+.exForm {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    transition: all 0.3 ease;
+    padding: 20px 20px 0 30px;
+
+}
+
+.exForm label {
+    font-size: 1.5rem;
+    color: var(--primary)
+}
+
+.exForm .exSec1 {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    height: 60vh;
+    width: 100%;
+
+
+
+}
+
+.exForm .exSec1 .exType {
+    display: flex;
+    padding-top: 20px;
+    gap: 50px;
+}
+
+.exForm .exSec1 .exType button {
+    padding: 10px;
+    background-color: var(--primary);
+    border-radius: 10px;
+    border: none;
+    color: var(--light);
+}
+
+.exForm .exSec1 .exType button.active {
+    background-color: var(--success);
+}
+
+.exForm .exSec1 .exInfo .WeekEnd {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    transition: 1.3s all ease;
+}
+
+.exForm .exSec1 .exInfo .WeekDay {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    transition: 1.3s all ease;
+    position: relative;
+}
+
+.exForm .exSec1 .exInfo .LongTerm {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    transition: 0.3s all ease;
+}
+
+.dater {
+    display: flex;
+    gap: 30px;
+}
+
+.dater label {
+    font-size: 15px;
+
+}
+
+.dater input[type="date"] {
+    padding: 10px;
+    width: 230px;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    outline: none;
+}
+
+.fileInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.fileInfo label {
+    font-size: 15px;
+
+}
+
+.fileInfo .fileInfo-1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.fileInfo .fileInfo-1 textarea {
+    width: 500px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid var(--primary);
+}
+
+.fileInfo .fileInfo-2:hover+.text {
+    transition: 0.5s all ease;
+    display: block;
+
+}
+
+.description {
+    z-index: 1000;
+    float: right;
+    margin-top: -24.5%;
+    margin-left: 10%;
+    background-color: var(--light);
+    border: 2px solid var(--primary);
+    padding: 10px;
+    border-radius: 10px;
+    transition: 0.5s all ease-in;
+}
+
+
+
+.exForm .exSec2 button {
+    background-color: var(--primary);
+    padding: 10px;
+    color: var(--light);
+    float: right;
+    border-radius: 10px;
+    outline: none;
+    border: 2px solid var(--primary);
+    margin-right: 50px;
+
+}
+
+
+
+
+
+/* end of exeat css */
+
+/* status css */
+
+.statForm {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    transition: all 0.3 ease;
+    padding: 20px 20px 0 30px;
+}
+
+.statForm .regTable-info {
+    height: auto;
+    padding: 10px;
+    border: 2px solid var(--primary);
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--light);
+}
+
+.statForm .regTable-info table {
+    background-color: var(--light);
+    border-collapse: collapse;
+    padding: 10px;
+    width: 100%;
+
+}
+
+
+.statForm .regTable-info table thead tr th {
+    width: auto;
+    font-weight: 600;
+    color: var(--primary);
+    padding: 10px;
+    align-items: center;
+
+}
+
+.regTable-info table tbody tr:nth-child(even) {
+    background-color: var(--grey);
+}
+
+.regTable-info table tbody tr:nth-child(odd) {
+    background-color: var(--light);
+
+}
+
+.regTable-info table tbody tr td {
+    padding: 10px;
+    text-align: center;
+}
+
+
+
+/* end of status css */
+
+/* admin CSS */
+.adminContainer {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+
+    padding: 20px 20px 0 30px;
+}
+
+.studentBoard {
+
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+.studentBoard .boxInfo {
+    width: 250px;
+    height: 150px;
+    background-color: var(--light);
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.studentBoard .boxInfo span {
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* admin signing students */
+
+.adminSignInForm {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    transition: all 0.3 ease;
+    padding: 20px 20px 0 30px;
+}
+
+.adminSignInForm .top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.adminSignInForm .top input[type="text"] {
+    padding: 10px;
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+
+}
+
+.adminSignInForm .adminSignInTable-info {
+    height: auto;
+    padding: 10px;
+    border: 2px solid var(--primary);
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--light);
+}
+
+.adminSignInForm .adminSignInTable-info table {
+    background-color: var(--light);
+    border-collapse: collapse;
+    padding: 10px;
+    width: 100%;
+
+
+}
+
+
+.adminSignInForm .adminSignInTable-info table thead tr th {
+    width: auto;
+    font-weight: 600;
+    color: var(--primary);
+    padding: 10px;
+    align-items: center;
+
+}
+
+.adminSignInTable-info table tbody tr:nth-child(even) {
+    background-color: var(--grey);
+}
+
+.adminSignInTable-info table tbody tr:nth-child(odd) {
+    background-color: var(--light);
+
+}
+
+.adminSignInTable-info table tbody tr td {
+    padding: 10px;
+    text-align: center;
+
+}
+
+.adminSignInTable-info button {
+    background-color: var(--danger);
+    padding: 10px;
+    outline: none;
+    border: none;
+    color: var(--light);
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.adminSignInTable-info button:hover {
+    background-color: var(--dark);
+}
+
+.adminSignInTable-info button:disabled {
+    background-color: #FBC02D !important;
+    cursor: not-allowed;
+}
+
+.signed-in {
+    background-color: green !important;
+}
+
+.adminRequestForm {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    transition: all 0.3 ease;
+    padding: 20px 20px 0 30px;
+}
+
+.adminRequestForm .top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.adminRequestForm .top input[type="text"] {
+    padding: 10px;
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+
+}
+
+.adminRequestForm .adminRequestTable-info {
+    height: auto;
+    padding: 10px;
+    border: 2px solid var(--primary);
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--light);
+}
+
+.adminRequestForm .adminRequestTable-info table {
+    background-color: var(--light);
+    border-collapse: collapse;
+    padding: 10px;
+    width: 100%;
+
+
+}
+
+
+.adminRequestForm .adminRequestTable-info table thead tr th {
+    width: auto;
+    font-weight: 600;
+    color: var(--primary);
+    padding: 10px;
+    align-items: center;
+
+}
+
+.adminRequestTable-info table tbody tr:nth-child(even) {
+    background-color: var(--grey);
+}
+
+.adminRequestTable-info table tbody tr:nth-child(odd) {
+    background-color: var(--light);
+
+}
+
+.adminRequestTable-info table tbody tr td {
+    padding: 10px;
+    text-align: center;
+
+
+}
+
+.adminRequestTable-info table tbody tr td .action {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+}
+
+.adminRequestTable-info table tbody tr td button {
+    background-color: var(--warning);
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+.adminRequestTable-info .action button {
+    padding: 10px;
+    outline: none;
+    border: none;
+    color: var(--light);
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.adminRequestTable-info .action .approve {
+    background-color: var(--success);
+    transition: background-color 0.3s ease;
+}
+
+.adminRequestTable-info .action .reject {
+    background-color: var(--danger);
+    transition: background-color 0.3s ease;
+}
+
+
+.adminRequestTable-info .action button:hover {
+    background-color: var(--dark);
+}
+
+.adminRequestTable-info .action button:disabled {
+    background-color: #FBC02D !important;
+    cursor: not-allowed;
+}
+
+.popup-container {
+    width: 100%;
+    height: 100%;
+    background-color: #BBF7D0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    /* Ensure popup is on top of other elements */
+
+}
+
+.popup {
+    background-color: var(--light);
+    width: 70%;
+    height: 65%;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.popup header {
+    font-size: 30px;
+    font-weight: 600;
+    height: 10%;
+    background-color: var(--primary);
+    color: var(--light);
+    border-radius: 10px;
+    padding-left: 5px;
+}
+
+.popup footer {
+    display: flex;
+    gap: 35%;
+    height: 70%;
+    padding-left: 5px;
+    font-size: 15px;
+    font-weight: 200;
+}
+
+.popup footer .split1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.popup footer .split2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.popup .travel {
+    display: flex;
+    gap: 5px;
+    padding-left: 5px;
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.adminContainer {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    transition: all 0.3 ease;
+    padding: 20px 20px 0 30px;
+
+}
+
+.adminContainer .adminInfo2 {
+    width: 100%;
+    height: 30%;
+
+}
+
+.adminContainer .adminInfo2 span {
+    font-size: 30px;
+    color: var(--dark-grey);
+
+}
+
+.adminContainer .adminInfo2 table {
+    background-color: var(--light);
+    border-collapse: collapse;
+    padding: 10px;
+    width: 100%;
+}
+
+.adminContainer .adminInfo2 table thead tr th {
+    width: auto;
+    font-weight: 600;
+    color: var(--primary);
+    padding: 10px;
+    align-items: center;
+    background-color: var(--light-primary);
+
+}
+
+.adminInfo2 table tbody tr:nth-child(even) {
+    background-color: var(--grey);
+}
+
+.adminInfo2 table tbody tr:nth-child(odd) {
+    background-color: var(--light);
+
+}
+
+.adminInfo2 table tbody tr td {
+    padding: 10px;
+    text-align: center;
+
+
+}
+
+
+/* #openPopupBtn {
+    margin: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+Responsive styles (optional)
+@media (max-width: 768px) {
+    .popup {
+        width: 90%;
+        height: 70%;
+    }
+}
+
+
+*/
+/* end of admin CSS */
+
+/* status css */
+
+.indicator {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    /* Initially hidden */
+}
+
+.green {
+    animation: fadeInOut 1.5s infinite;
+    background-color: green;
+
+}
+
+.red {
+    animation: fadeInOut 1.5s infinite;
+    background-color: red;
+}
+
+@keyframes fadeInOut {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* end of status css */
+
+
+@media (min-width:475px) {}
+
+@media (min-width:640px) {}
+
+@media (min-width:768px) {}
+
+@media (min-width:1024px) {}
+
+@media (min-width:1280px) {}
+
+@media (min-width:1536px) {}
+
+/* student page ends */
+main {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    border: solid 2px black;
+    border-radius: 10px;
+    background-color: white;
+
+}
+
+.login-container img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.login-container .form-container .login-form {
+
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.login-container .form-container h2 {
+    padding: 10px;
+    font-size: 40px;
+    /* font-family: sans-serif; */
+    font-weight: 700;
+}
+
+.login-container .form-container .login-form input {
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 100%;
+    height: 40px;
+    /* font-family: sans-serif; */
+    font-size: 15px;
+    padding: 10px;
+
+}
+
+.login-container .form-container .login-form button {
+    margin-top: 10px;
+    padding: 10px;
+    width: 50%;
+    color: white;
+    font-size: 15px;
+    height: 40px;
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 20px;
+}

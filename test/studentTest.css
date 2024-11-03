@@ -1,0 +1,527 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap');
+
+:root {
+    --light: #f6f6f9;
+    --primary: #0f0f0f;
+    --light-primary: #3e4042;
+    --grey: #eee;
+    --dark-grey: #AAAAAA;
+    --dark: #363949;
+    --danger: #D32F2F;
+    --light-danger: #FECDD3;
+    --warning: #FBC02D;
+    --light-warning: #FFF2C6;
+    --success: #388E3C;
+    --light-success: #BBF7D0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.fas {
+    font-size: 1.7rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+body {
+    background-color: var(--grey);
+}
+
+.sidebar {
+    position: fixed;
+    z-index: 2000;
+    height: 100%;
+    padding-right: 5px;
+    top: 0;
+    left: 0;
+    background-color: var(--light);
+    width: 250px;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    transition: all 0.3s ease;
+
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.sidebar.close {
+    width: 60px;
+
+}
+
+.sidebar .logo {
+    font-size: 24px;
+    font-weight: 800;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    color: var(--primary);
+    z-index: 500;
+    padding-bottom: 20px;
+}
+
+.sidebar .logo .logo-name {
+    margin-left: 5px;
+}
+
+.sidebar .logo .fas {
+    min-width: 60px;
+    display: flex;
+    justify-content: center;
+    font-size: 2.2rem;
+}
+
+.sidebar .side-menu {
+    width: 100%;
+    margin-top: 70px;
+
+}
+
+.sidebar .side-menu li {
+    height: 45px;
+    background: transparent;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 5px;
+
+}
+
+.sidebar .side-menu li.active {
+    background-color: var(--primary);
+
+    position: relative;
+}
+
+.sidebar .side-menu li a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    font-size: 16px;
+    color: var(--primary);
+    white-space: nowrap;
+    overflow-x: hidden;
+    transition: all 0.3s ease;
+}
+
+.sidebar .side-menu li:hover {
+    transition: all 0.3s ease;
+    background-color: var(--grey);
+
+}
+
+.sidebar.close .side-menu li a {
+    width: calc(48px - (4px * 2));
+    transition: all 0.3s ease;
+}
+
+.sidebar .side-menu li a .fas {
+    min-width: calc(60px - ((4px + 6px) * 2));
+    padding-right: 5px;
+    display: flex;
+    font-size: 1.6rem;
+    justify-content: center;
+}
+
+.sidebar .side-menu li.active a {
+    color: var(--light);
+}
+
+.sidebar .side-menu li a.logout {
+    color: var(--danger);
+}
+
+.sidebar.close~.content {
+    width: calc(100% - 60px);
+    left: 60px;
+}
+
+/* nav bar */
+.content nav {
+    height: 56px;
+    background: var(--light);
+    padding: 0 24px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+
+}
+
+.content nav a {
+    color: var(--dark);
+}
+
+.content nav.fas .fa-bars {
+    cursor: pointer;
+}
+
+.content nav form {
+    max-width: 400px;
+    width: 100%;
+    margin-right: auto;
+}
+
+.content nav form .form-input {
+    display: flex;
+    align-items: center;
+    height: 36px;
+}
+
+.content nav form .form-input input {
+    flex-grow: 1;
+    padding: 0 16px;
+    height: 100%;
+    border: none;
+    background: var(--grey);
+    border-radius: 36 0 0 36px;
+    outline: none;
+    width: 100%;
+    color: var(--dark);
+
+}
+
+.content nav form .form-input button {
+    width: 60px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary);
+    color: var(--light);
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 0 36px 36px 0;
+    cursor: pointer;
+
+
+}
+
+.content nav .notify {
+    font-size: 20px;
+    position: relative;
+}
+
+.content nav .notify .count {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 20px;
+    height: 20px;
+    background: var(--danger);
+    border-radius: 50px;
+    color: var(--light);
+    border: 2px solid var(--light);
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content nav .profile img {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: 50%;
+
+}
+
+
+.content {
+    width: calc(100% - 250px);
+    float: right;
+
+}
+
+.content nav form.show.notify,
+.content nav form.show~.profile {
+    display: none;
+}
+
+/* registration page  */
+.holder {
+    height: 100vh;
+    float: right;
+    width: calc(100% - 250px);
+    padding: 10px;
+}
+.holder .holder-jnr{
+  
+    padding: 10px;
+}
+.regForm {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    padding: 20px 0 0 30px;
+}
+
+.regForm label {
+    font-size: 1.5rem;
+    color: var(--dark-grey);
+}
+
+
+.regForm .resType {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--primary); 
+    width: fit-content;
+
+}
+.regForm .resType span{
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 50px;
+}
+
+.regForm .resType .resButton {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+   
+    
+}
+
+.regForm .resType .resButton button {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    font-weight: 500;
+    border: 1px solid var(--primary);
+    background-color: var(--light);
+    border-radius: 5px;
+    width: fit-content;
+    height: 30px;
+    padding: 3px 5px 0 5px;       
+}
+
+.regForm .resType .resButton button.active {
+    background:var(--light-success);
+    transition: all 1s ease;
+}
+
+
+
+.regForm .table-info {
+    height: auto;
+    padding: 10px;
+    border: 1px solid var(--primary);
+    width: fit-content;
+    border-radius:0 0 5px 5px ;
+    background-color: var(--light);
+
+}
+
+.regForm .table-info table {
+    background-color: var(--light);
+    border-collapse: collapse;
+    padding: 10px;
+
+
+}
+
+
+.regForm .table-info table thead tr th {
+    width: auto;
+    font-weight: 600;
+    color: var(--primary);
+    padding: 10px;
+    align-items: center;
+
+}
+
+.table-info table tbody tr:nth-child(even) {
+    background-color: var(--grey);
+}
+
+.table-info table tbody tr:nth-child(odd) {
+    background-color: var(--light);
+
+}
+
+.table-info table tbody tr td {
+    padding: 10px;
+    text-align: center;
+}
+
+.table-info table tbody tr td .resSelect {
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--primary)
+}
+
+input:checked {
+    color: var(--success);
+}
+
+.hostel{
+    display: flex;
+    align-items: center;
+    gap:10%;
+    width: 100%;
+  
+}
+.hostel .roomNum label{
+    color: var(--primary);
+    font-size: 20px;
+    font-weight: 500;
+}
+.hostel .roomNum .num{
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    padding: 10px;
+  
+}
+.hostel .submitReg{
+  margin-left:20% ;
+
+}
+
+.hostel .submitReg button{
+    padding: 10px;
+    border-radius:10px ;
+    background: var(--danger);
+    font-size: 20px;
+    color: var(--light);
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    border: none;
+    
+}
+
+/* block Bootstrap Css   */
+.list-choice {
+    width: 300px;
+    position: relative;
+    cursor: pointer;
+}
+
+.list-choice input[type="radio"] {
+    position: absolute;
+    left: -9999px;
+}
+
+.list-choice-title {
+    width: 100%;
+    display: block;
+    background: var(--light);
+    text-align: left;
+    font-size: 15px;
+    padding: 5px 10px 10px 10px;
+    color: var(--primary);
+    text-shadow: 0 1px 0 #CACACA;
+    border-radius: 5px;
+    border: 2px solid var(--primary);
+}
+
+.list-choice:hover .list-choice-title {
+    border-radius: 0.2em 0.2em 0 0;
+}
+
+.list-choice-objects label:nth-last-of-type(1) span {
+    border-radius: 0 0 0.2em 0.2em;
+}
+
+.list-choice input[type="radio"]+span {
+    color: var(--primary);
+    background: var(--light);
+    padding: 0 0 5px 0;
+    display: block;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 100%;
+}
+
+.list-choice-objects {
+    position: absolute;
+    top: 0;
+    padding-top: 2.1em;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+    max-height: 0;
+    transition: all 250ms ease;
+}
+
+.list-choice:hover .list-choice-objects input[type="radio"]+span {
+    position: relative;
+    top: 15px;
+    transition: all 250ms ease-in-out;
+}
+
+.list-choice:hover input[type="radio"]+span:hover {
+    background: var(--dark-grey);
+}
+
+.list-choice:hover input[type="radio"]:checked+span:hover {
+    background: var(--success);
+}
+
+.list-choice input[type="radio"]:checked+span {
+   font-weight: 600;
+    position: absolute;
+    top: 0;
+    border-radius:5px;
+    border: 1px solid var(--primary);
+}
+
+.list-choice:hover input[type="radio"]:checked+span {
+    border-radius: 0;
+}
+
+.list-choice:hover .list-choice-objects label:nth-last-of-type(1) input[type="radio"]:checked+span {
+    border-radius: 0 0 0.2em 0.2em;
+}
+
+.list-choice:hover .list-choice-objects {
+    max-height: 540px;
+}
+
+
+
+/* end of css block */
+
+@media (min-width:475px) {}
+
+@media (min-width:640px) {}
+
+@media (min-width:768px) {}
+
+@media (min-width:1024px) {}
+
+@media (min-width:1280px) {}
+
+@media (min-width:1536px) {}
